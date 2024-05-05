@@ -1,0 +1,193 @@
+version 15.2
+no service pad
+no service timestamps debug uptime
+no service timestamps log uptime
+service password-encryption
+!
+hostname SGMB1
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$Ukc2$XTmktVtDtOI3ljJUSeq3g.
+!
+username ChabailleThomas secret 5 $1$7oyi$Vv.pd/GmNrbY4zM3KhZPV1
+username GourdainNathan secret 5 $1$X6J/$lV2IdGJGrkA4aQ8aTJQXO1
+username LespagnolAlexandre secret 5 $1$kEz7$6VOXp0KKz9B8fZUml.E6o/
+no aaa new-model
+switch 1 provision ws-c2960s-24ps-l
+!
+!
+no ip domain-lookup
+ip domain-name berlin.gastonmedilab
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3903506176
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3903506176
+ revocation-check none
+ rsakeypair TP-self-signed-3903506176
+!
+!
+crypto pki certificate chain TP-self-signed-3903506176
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33393033 35303631 3736301E 170D3131 30333330 30313238
+  32395A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 39303335
+  30363137 3630819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100BEDA AB2EB787 7FF1850A 0AF0DFBB 4FEA034B A7DB83D3 8584F3F5 32F8E6FD
+  4211AC71 9E7CE7D5 FFE11144 9E0B10A1 675798A0 BE4D0956 A5F45469 B6EBAE87
+  95936379 97305B66 69E1D110 9DECCE05 229FE8BB 32B0D296 B776553C 292CE891
+  C3DC26E7 BE175476 C7CDB57B 7BD076E9 6E987609 4A78F4D2 7BEA17F1 6E6DB73F
+  5CC50203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 14710774 2A1897CD C550CEB3 946B2209 98190FB0 A0301D06
+  03551D0E 04160414 7107742A 1897CDC5 50CEB394 6B220998 190FB0A0 300D0609
+  2A864886 F70D0101 05050003 818100BB 4CF55A22 A9C2E590 B52F2F54 224F4AD0
+  028522BF 848FEA75 DCA80116 E8B021ED 4F49A0D0 2CBB539C D6897C6D 88F4239E
+  A5BA8562 D8389ED0 0239E258 3163CEB6 43A6D595 4BC694B4 543A6C30 4AE190D8
+  E80C9F67 4D4B0434 FE8377F2 F4AFFDF1 4B169BF4 6BDBC45D 9E6B23C6 7227933A
+  C4268315 40DD517F 4B6F8E4B 5514A1
+        quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport trunk allowed vlan 10,15,20,30,40,50,60,70,80,90,100,110
+ switchport mode trunk
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ switchport trunk allowed vlan 10,15,20,30,40,50,60,70,80,90,100,110
+ switchport mode trunk
+ channel-protocol lacp
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/2
+ switchport trunk allowed vlan 10,15,20,30,40,50,60,70,80,90,100,110
+ switchport mode trunk
+ channel-protocol lacp
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/3
+!
+interface GigabitEthernet1/0/4
+!
+interface GigabitEthernet1/0/5
+!
+interface GigabitEthernet1/0/6
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 10
+ switchport mode access
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 10
+ switchport mode access
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 90
+ switchport mode access
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 90
+ switchport mode access
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 90
+ switchport mode access
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 100
+ switchport mode access
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 100
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan40
+ ip address 172.16.64.209 255.255.255.240
+!
+ip http server
+ip http secure-server
+!
+!
+!
+!
+banner motd #Toute utilisation non autorisee fera l'objet de poursuites judiciaires.#
+!
+line con 0
+ login local
+line vty 0 1
+ login local
+ transport input ssh
+line vty 2 4
+ login
+line vty 5 15
+ login
+!
+end

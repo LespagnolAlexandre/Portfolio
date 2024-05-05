@@ -1,0 +1,265 @@
+version 15.5
+no service timestamps debug uptime
+no service timestamps log uptime
+service password-encryption
+!
+hostname RGM
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$.Rbo$gf/jrlllr1Du.5YKgP6SJ.
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name berlin.gastonmedilab
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+license udi pid CISCO2921/K9 sn FCZ181370ET
+hw-module usb disable
+!
+!
+username ChabailleThomas privilege 15 secret 5 $1$SJ6f$A8WtXi.4fb6mX6WZrMTVo.
+username GourdainNathan privilege 15 secret 5 $1$eJj9$yL6kDzlfc7EM9ZpG1ITNK/
+username LespagnolAlexandre privilege 15 secret 5 $1$pFKL$9QehMj/n/odkDS9n9AVtI1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ description Inteface LAN
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 172.16.64.125 255.255.255.128
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 10 ip 172.16.64.126
+ standby 10 priority 150
+ standby 10 preempt
+!
+interface GigabitEthernet0/0.15
+ encapsulation dot1Q 15
+ ip address 172.16.65.86 255.255.255.192
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 15 ip 172.16.65.87
+ standby 15 preempt
+!
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 172.16.64.189 255.255.255.192
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 20 ip 172.16.64.190
+ standby 20 priority 150
+!
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 172.16.64.205 255.255.255.240
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 30 ip 172.16.64.206
+ standby 30 priority 150
+ standby 30 preempt
+!
+interface GigabitEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 172.16.64.221 255.255.255.240
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 40 ip 172.16.64.222
+ standby 40 priority 150
+ standby 40 preempt
+!
+interface GigabitEthernet0/0.50
+ encapsulation dot1Q 50
+ ip address 172.16.64.229 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 50 ip 172.16.64.230
+ standby 50 priority 150
+ standby 50 preempt
+!
+interface GigabitEthernet0/0.60
+ encapsulation dot1Q 60
+ ip address 172.16.64.237 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 60 ip 172.16.64.238
+ standby 60 priority 150
+ standby 60 preempt
+!
+interface GigabitEthernet0/0.70
+ encapsulation dot1Q 70
+ ip address 172.16.64.245 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 70 ip 172.16.64.246
+ standby 70 priority 150
+ standby 70 preempt
+!
+interface GigabitEthernet0/0.80
+ encapsulation dot1Q 80
+ ip address 172.16.64.253 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 80 ip 172.16.64.254
+ standby 80 priority 150
+ standby 80 preempt
+!
+interface GigabitEthernet0/0.90
+ encapsulation dot1Q 90
+ ip address 172.16.65.5 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 90 ip 172.16.65.6
+ standby 90 priority 150
+ standby 90 preempt
+!
+interface GigabitEthernet0/0.100
+ encapsulation dot1Q 100
+ ip address 172.16.65.13 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 100 ip 172.16.65.14
+ standby 100 priority 150
+ standby 100 preempt
+!
+interface GigabitEthernet0/0.110
+ encapsulation dot1Q 110
+ ip address 172.16.65.21 255.255.255.248
+ ip helper-address 172.16.64.225
+ ip helper-address 172.16.64.241
+ ip nat inside
+ ip virtual-reassembly in
+ standby version 2
+ standby 110 ip 172.16.65.22
+ standby 110 priority 150
+ standby 110 preempt
+!
+interface GigabitEthernet0/1
+ ip address dhcp
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip flow-export version 9
+!
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+ip route 0.0.0.0 0.0.0.0 10.63.18.253
+ip ssh time-out 30
+ip ssh version 2
+!
+!
+!
+access-list 1 permit 172.16.64.0 0.0.7.255
+!
+control-plane
+!
+!
+banner motd #Toute utilisation non autorisee fera l'objet de poursuites judiciaires.#
+!
+line con 0
+ login local
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 1
+ login local
+ transport input ssh
+line vty 2 4
+ login
+ transport input none
+!
+scheduler allocate 20000 1000
+!
+end
